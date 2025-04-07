@@ -4,34 +4,24 @@ import "./App.css";
 import axios from "axios";
 
 interface Repo {
-  id: number;
   name: string;
   stargazers_count: number;
+  id: number;
   description: string;
-  html_url: string;
   forks_count: number;
+  html_url: string;
   language: string;
 }
 
-// interface User {
-//   login: string;
-//   avatar_url: string;
-//   name: string;
-//   location: string;
-//   followers: number;
-//   bio: string;
-//   html_url: string;
-// }
-
 function App() {
   const [username, setUsername] = useState("");
-  const [profile, setProfile] = useState<any>(null);
-  const [repos, setRepos] = useState<Repo[]>([]);
+  const [profile, setProfile] = useState<any>({});
+  const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showUsernames, setShowUsernames] = useState(false);
 
-  const fetchUserData = async (usernameToFetch: any) => {
+  const fetchUserData = async (usernameToFetch: string) => {
     try {
       setError("");
       setLoading(true);
@@ -99,7 +89,7 @@ function App() {
         />
         <button
           onClick={handleClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-black text-white px-4 py-2 rounded"
           disabled={loading}
         >
           {loading ? "Searching..." : "Search"}
